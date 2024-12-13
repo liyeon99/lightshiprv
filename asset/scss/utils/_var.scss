@@ -1,0 +1,55 @@
+$grid-columns: 10;
+$grid-gutter: 20px;
+$grid-gutter-half: calc(0.5 * var(--grid-gutter));
+$grid-margin: 15px;
+
+$spacing-tiny-mobile: 20;
+$spacing-tiny: 20;
+$spacing-small-mobile: 30;
+$spacing-small: 30;
+$spacing-medium-mobile: 40;
+$spacing-medium: 40;
+$spacing-large-mobile: 52;
+$spacing-large: 80;
+$spacing-big-mobile: 80;
+$spacing-big: 150;
+$spacing-huge-mobile: 100;
+$spacing-huge: 200;
+$spacing-enormous-mobile: 140;
+$spacing-enormous: 250;
+
+$color-text: #000;
+$color-background: #F4F4F4;
+$color-contrast: #F9F9F9;
+$color-border: #E8E8E8;
+$color-footer: #E8E8E8;
+
+$color-primary: #FA5C40;
+$color-secondary: #29525E;
+$color-white: #fff;
+
+$header-height: 6.875rem;
+$button-height: 3.3125rem;
+
+$border-radius: 0.5rem;
+
+// 기본 스타일
+:root {
+  --grid-margin: 15px;
+  --border-radius: 0.5rem;
+}
+
+// 모바일에서 변경
+@include responsive('t') {
+  :root {
+    --grid-margin: 30px;
+    --border-radius: 0.75rem;
+  }
+}
+
+// 데스크탑에서 변경
+@include responsive('d') {
+  :root {
+    --grid-margin: 50px;
+  }
+}

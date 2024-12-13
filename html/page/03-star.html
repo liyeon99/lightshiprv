@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-star</title>
+  <link rel="stylesheet" href="../../asset/css/style.css" />
+  <!-- gsap -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="star">
+      <h2 class="headline">We have a bold vision for the future of travel where you can better connect with the outdoors
+        and each other. Lightship’s electric travel trailers allow you to visit new corners of the world while doing
+        your part to preserve it.</h2>
+      <div class="star__wrap">
+        <div class="sticky__wrap">
+          <div class="sticky">
+            <div class="star__video">
+              <video id="starVideo" muted loop>
+                <source src="../../asset/video/star.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="star__shape__wrap">
+              <div class="star__shape star__shape-1">
+                <svg viewBox="0 0 470 470" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M250.381 11.148L278.64 97.5703C293.163 141.998 328.002 176.837 372.43 191.36L458.852 219.619C473.716 224.484 473.716 245.516 458.852 250.381L372.43 278.64C328.002 293.175 293.175 328.002 278.64 372.43L250.381 458.852C245.516 473.716 224.484 473.716 219.619 458.852L191.36 372.43C176.837 328.002 141.998 293.163 97.5703 278.64L11.148 250.381C-3.71598 245.516 -3.71598 224.495 11.148 219.619L97.5585 191.36C141.986 176.837 176.825 141.998 191.348 97.5703L219.619 11.148C224.484 -3.71598 245.516 -3.71598 250.381 11.148Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="star__shape star__shape-2">
+                <svg viewBox="0 0 470 470" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M250.381 11.148L278.64 97.5703C293.163 141.998 328.002 176.837 372.43 191.36L458.852 219.619C473.716 224.484 473.716 245.516 458.852 250.381L372.43 278.64C328.002 293.175 293.175 328.002 278.64 372.43L250.381 458.852C245.516 473.716 224.484 473.716 219.619 458.852L191.36 372.43C176.837 328.002 141.998 293.163 97.5703 278.64L11.148 250.381C-3.71598 245.516 -3.71598 224.495 11.148 219.619L97.5585 191.36C141.986 176.837 176.825 141.998 191.348 97.5703L219.619 11.148C224.484 -3.71598 245.516 -3.71598 250.381 11.148Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="star__shape star__shape-3">
+                <svg viewBox="0 0 470 470" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M250.381 11.148L278.64 97.5703C293.163 141.998 328.002 176.837 372.43 191.36L458.852 219.619C473.716 224.484 473.716 245.516 458.852 250.381L372.43 278.64C328.002 293.175 293.175 328.002 278.64 372.43L250.381 458.852C245.516 473.716 224.484 473.716 219.619 458.852L191.36 372.43C176.837 328.002 141.998 293.163 97.5703 278.64L11.148 250.381C-3.71598 245.516 -3.71598 224.495 11.148 219.619L97.5585 191.36C141.986 176.837 176.825 141.998 191.348 97.5703L219.619 11.148C224.484 -3.71598 245.516 -3.71598 250.381 11.148Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="star__shape star__shape-4">
+                <svg viewBox="0 0 470 470" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M250.381 11.148L278.64 97.5703C293.163 141.998 328.002 176.837 372.43 191.36L458.852 219.619C473.716 224.484 473.716 245.516 458.852 250.381L372.43 278.64C328.002 293.175 293.175 328.002 278.64 372.43L250.381 458.852C245.516 473.716 224.484 473.716 219.619 458.852L191.36 372.43C176.837 328.002 141.998 293.163 97.5703 278.64L11.148 250.381C-3.71598 245.516 -3.71598 224.495 11.148 219.619L97.5585 191.36C141.986 176.837 176.825 141.998 191.348 97.5703L219.619 11.148C224.484 -3.71598 245.516 -3.71598 250.381 11.148Z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let lastProgress = 0;
+    const starShape = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".star",
+        start: "top top",
+        end: "bottom bottom",
+        markers: true,
+        scrub:2,
+        onUpdate: (self) => {
+          const currentProgress = self.progress;
+          console.log(currentProgress);
+          if (currentProgress > lastProgress) {
+            // console.log(`스크롤 위로`);
+            gsap.to('.star__shape-1', {
+              y: currentProgress+(40), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-1', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-2', {
+              y: currentProgress+(80), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-2', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-3', {
+              y: currentProgress+(120), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-4', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-4', {
+              y: currentProgress+(160), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-3', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+          } else if (currentProgress < lastProgress) {
+            // console.log(`스크롤 위로`);
+            gsap.to('.star__shape-1', {
+              y: currentProgress+(-40), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-1', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-2', {
+              y: currentProgress+(-80), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-2', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-3', {
+              y: currentProgress+(-120), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-4', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+            gsap.to('.star__shape-4', {
+              y: currentProgress+(-160), // 잠깐 위로 이동
+              duration: currentProgress, // 이동 시간
+              ease: "power1.inOut",
+              onComplete: () => {
+                gsap.to('.star__shape-3', {
+                  y: 0, // 원래 위치로 돌아감
+                  duration: 0.1,
+                  ease: "power1.inOut"
+                });
+              }
+            });
+          }
+
+          // 상태 업
+          lastProgress = currentProgress;
+        },
+      }
+    });
+
+
+
+    const starVideo = document.getElementById("starVideo");
+
+    const star = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".star__wrap",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        markers: false, // 디버그용 마커
+        onEnter: () => {
+          starVideo.play();
+        },
+        onLeaveBack: () => {
+          starVideo.pause();
+        }
+      }
+    });
+
+    star.to(".star__video", {
+      "--scaling-value": 4,
+      duration: 1,
+      ease: "none",
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+.card {
+  a {
+    @include column-flexbox(between, center);
+    background-image: url(../images/thumbnail.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: var(--border-radius);
+    padding: .9375rem .9375rem 2.1875rem .9375rem;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__top {
+    @include flexbox(between, start);
+    width: 100%;
+    color: $color-white;
+
+    svg {
+      width: 27px;
+      height: 13px;
+      fill: $color-white;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+
+    @include responsive('d') {
+      font-size: 3.375rem;
+    }
+  }
+
+  &__reserve {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    position: relative;
+    min-width: 7.5rem;
+    height: $button-height;
+    background: #000;
+    color: $color-white;
+    overflow: hidden;
+
+    @include responsive('t') {
+      background: transparent;
+      border: 1px solid $color-white;
+    }
+
+    &-title {
+      @include flexbox;
+      padding: 0 1.375rem;
+      transform: translate(0, 0);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      text-align: center;
+    }
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      border-radius: 50px;
+      width: 100%;
+      height: 100%;
+      transition: .4s;
+      overflow: hidden;
+      transform: translateY(101%);
+
+      @include responsive('t') {
+        background: transparent;
+      }
+
+      &__wrap {
+        @include flexbox;
+        height: 100%;
+        gap: 10px;
+        background: $color-primary;
+        white-space: nowrap;
+        position: absolute;
+      }
+    }
+  }
+
+  &:hover .card__reserve {
+    border-color: transparent;
+  }
+
+  &:hover .card__reserve-inner {
+    opacity: 1;
+    transform: translateY(0);
+    border-radius: var(--border-radius);
+
+    &__wrap {
+      
+    }
+    &__item{
+      animation: railHorizontal linear infinite;
+      animation-duration: 3s;
+      display: flex;
+      span{
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &:hover .card__reserve-title {
+    opacity: 0;
+    transform: translate(0, -200%);
+  }
+}

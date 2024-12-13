@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07-journal</title>
+  <link rel="stylesheet" href="../../asset/css/style.css" />
+
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- gsap -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="journal inner">
+      <div class="journal__top">
+        <div class="journal__top-heading">
+          <h2 class="headline">Journal</h2>
+          <a href="#" class="link__articles">
+            <span class="link__articles-title">All articles</span>
+            <span class="link__articles-inner" aria-hidden="true">All articles</span>
+          </a>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="journal__swiper">
+        <div class="swiper-wrapper">
+          <a href="#" class="swiper-slide">
+            <div class="swiper-slide__thumb">
+              <img src="../../asset/images/slide/01.jpg" alt>
+            </div>
+            <div class="swiper-slide__info">
+              <time datetime="2024.06.13">06.13.2024</time>
+              <p class="swiper-slide__info-title">
+                Complete climate control with minimal climate impact: the L1's innovative HVAC system
+              </p>
+            </div>
+          </a>
+          <a href="#" class="swiper-slide">
+            <div class="swiper-slide__thumb">
+              <img src="../../asset/images/slide/02.jpg" alt>
+            </div>
+            <div class="swiper-slide__info">
+              <time datetime="2024.01.17">01.17.2024</time>
+              <p class="swiper-slide__info-title">
+                Announcing Our Series
+              </p>
+            </div>
+          </a>
+          <a href="#" class="swiper-slide">
+            <div class="swiper-slide__thumb">
+              <img src="../../asset/images/slide/03.jpg" alt>
+            </div>
+            <div class="swiper-slide__info">
+              <time datetime="2023.02.15">02.15.2013</time>
+              <p class="swiper-slide__info-title">
+                Designed From the Ground Up for Efficiency: Lightship L1 Aerodynamics
+              </p>
+            </div>
+          </a>
+          <a href="#" class="swiper-slide">
+            <div class="swiper-slide__thumb">
+              <img src="../../asset/images/slide/04.jpg" alt>
+            </div>
+            <div class="swiper-slide__info">
+              <time datetime="2023.05.31">05.31.2023</time>
+              <p class="swiper-slide__info-title">
+                The Next Phase for the Lightship L1: Production Facility in Colorado
+              </p>
+            </div>
+          </a>
+          <a href="#" class="swiper-slide">
+            <div class="swiper-slide__thumb">
+              <img src="../../asset/images/slide/05.jpg" alt>
+            </div>
+            <div class="swiper-slide__info">
+              <time datetime="2023.04.26">04.26.2013</time>
+              <p class="swiper-slide__info-title">
+                Meet the Lightship Design Team
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const journalSwiper = new Swiper('.journal__swiper', {
+      slidesPerView: 1.33,
+      spaceBetween: 20,
+      grabCursor: true, // 드래그 커서
+      breakpoints: {
+        700: {
+          slidesPerView: 2.33,
+        },
+        1000: {
+          slidesPerView: 3.33,
+        }
+      },
+      pagination: {
+        el: '.journal .swiper-pagination',
+        type: 'progressbar',
+      },
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../asset/css/style.css" />
+  <style>
+    body {
+      font-family: "SohneSchmal";
+    }
+
+    .btn {
+      position: relative;
+      background: #fbfaff;
+      color: #292734;
+      width: 10rem;
+      padding: 1rem 0;
+      font-size: 2rem;
+    }
+
+    .btn+.btn {
+      margin-top: 1rem;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: #000;
+      transition: transform .3s;
+    }
+
+    .btn-center::after {
+      transform: scale(0, 1);
+    }
+
+    .btn-center:hover::after {
+      transform: scale(1, 1);
+    }
+
+    .btn-left::after {
+      transform: scale(0, 1);
+      transform-origin: 0 100%;transition: transform 0.3s ease;
+    }
+    
+    .btn-left:hover::after {
+      transform: scale(1, 1);
+    }
+    .btn-bottom{
+      overflow: hidden;
+    }
+    .btn-bottom::after {
+      transform: translateY(3px);
+    }
+    
+    .btn-bottom:hover::after {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn btn-center">center</button>
+  <button class="btn btn-left">left</button>
+  <button class="btn btn-bottom">bottom</button>
+</body>
+
+</html>

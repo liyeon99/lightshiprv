@@ -1,0 +1,58 @@
+.font {
+	&-f37 {
+		font-family: "F37Bolton";
+	}
+
+	&-sohn {
+		font-family: "SuisseIntlMono";
+	}
+
+	&-suis {
+		font-family: "SohneSchmal";
+	}
+}
+
+.bold {
+	font-weight: bold;
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "F37Bolton";
+	src: url("../fonts/F37Bolton-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "F37Bolton";
+	src: url("../fonts/F37Bolton-Regular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "SuisseIntlMono";
+	src: url("../fonts/SuisseIntlMono-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "SuisseIntlMono";
+	src: url("../fonts/SuisseIntlMono-Regular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "SohneSchmal";
+	src: url("../fonts/SohneSchmal-Buch.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal
+}
+

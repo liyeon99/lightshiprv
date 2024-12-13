@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .video_svg {
+      width: 200px;
+      height: 200px;
+    }
+
+    circle {
+      stroke: #fff;
+      stroke-width: 1px;
+      fill: transparent;
+      transform-origin: 50% 50%;
+      stroke-dasharray: 616;
+      stroke-dashoffset: 616;
+      animation: mouseoutVideoToggler 1.2s cubic-bezier(0.6, 0.5, 0, 1) forwards;
+      animation-delay: 0.2s;
+    }
+    
+    circle:hover {
+      animation: mouseoverVideoToggler 1.2s cubic-bezier(0.2, 0.1, 0, 1) forwards;
+    }
+    @keyframes mouseoutVideoToggler {
+      0% {
+        transform: rotate(-45deg);
+        stroke-dashoffset: 616;
+
+      }
+
+      100% {
+        transform: rotate(85deg);
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes mouseoverVideoToggler {
+      0% {
+        stroke-dasharray: 0;
+        transform: rotate(0) scale(1);
+      }
+
+      15% {
+        stroke-dasharray: 2, 10;
+      }
+
+      100% {
+        stroke-dasharray: 2, 10;
+        transform: rotate(35deg) scale(0.9);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <svg class="video_svg" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="98"></circle>
+  </svg>
+</body>
+
+</html>

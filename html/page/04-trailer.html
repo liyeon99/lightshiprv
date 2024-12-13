@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04-trailer</title>
+  <link rel="stylesheet" href="../../asset/css/style.css" />
+
+  <style>
+    main {
+      padding-top: 500px;
+    }
+  </style>
+  <!-- gsap -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="trailer">
+      <h2 class="headline">Introducing the aero electric L1 travel trailer.</h2>
+      <div class="trailer__cover">
+        <div class="trailer__cover__wrap"><img src="../../asset/images/video-cover.jpg" alt></div>
+      </div>
+      <div class="trailer__video">
+        <div class="sticky__wrap">
+          <div class="sticky">
+            <video id="bgVideo" muted>
+              <source src="../../asset/video/main.mp4" type="video/mp4" />
+            </video>
+            <p data-scroll-video-time="1,6">Integrated solar and all-electric everything.</p>
+            <p data-scroll-video-time="7,10.5">Bright, open spaces.</p>
+            <p data-scroll-video-time="12,18">Endless views.</p>
+            <p data-scroll-video-time="23,27.5">Camp Mode to Road Mode at the press of a button</p>
+          </div>
+        </div>
+      </div>
+      <div class="trailer__video-mobile">
+        <video muted loop>
+          <source src="../../asset/video/main.mp4" type="video/mp4" />
+        </video>
+        <p class="trailer__video-mobile__text">
+          All electric everything. Nearly zero range loss. Bright open spaces. Endless views.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    gsap.defaults({
+      ease: "none"
+    })
+    // Split text into words and characters
+    ScrollTrigger.create({
+      trigger: ".trailer",
+      start: "top 50%",
+      scrub: 1,
+      onEnter: () => {
+        animateText(".trailer .headline");
+      },
+    })
+    let mm = gsap.matchMedia();
+    mm.add("(max-width: 999px)", () => {
+      ScrollTrigger.create({
+        trigger: ".trailer",
+        start: "top bottom",
+        end: "bottom bottom",
+        markers: true,
+        onEnter: () => {
+          $(".trailer__video-mobile video")[0].play();
+        },
+        onLeaveBack: () => {
+          $(".trailer__video-mobile video")[0].pause();
+        },
+      });
+    });
+    mm.add("(min-width: 1000px)", () => {
+      const trailerCover = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".trailer__cover",
+          start: "top top",
+          end: "bottom bottom",
+          markers: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      trailerCover
+        .to(".trailer__cover__wrap", {
+          clipPath: "inset(0px 0 round 0)",
+        })
+        .from(".trailer__cover__wrap", {
+          clipPath: "inset(0px 10% round 20px)",
+        })
+        .to(".trailer__cover", {
+          height: 0,
+        })
+
+      const video = document.getElementById('bgVideo');
+      const texts = document.querySelectorAll('.trailer__video p');
+      const trailerVideo = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.trailer__video',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 10,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const scrollPercent = self.progress;
+            const videoDuration = video.duration;
+            const currentTime = scrollPercent * videoDuration;
+            if (currentTime) {
+              video.currentTime = currentTime;
+            }
+
+            texts.forEach(text => {
+              const [start, end] = text.getAttribute('data-scroll-video-time').split(',').map(Number);
+              if (currentTime >= start && currentTime <= end) {
+                text.style.opacity = 1;
+                animateText(text);
+              } else {
+                text.style.opacity = 0;
+              }
+            });
+          },
+          onEnter: () => {
+            $('.trailer__video').removeClass('clip');
+          },
+          onLeave: () => {
+            $('.trailer__video').addClass('clip');
+          },
+          onEnterBack: () => {
+            $('.trailer__video').removeClass('clip');
+          },
+          onLeaveBack: () => {
+            $('.trailer__video').addClass('clip');
+          }
+        }
+      });
+
+    });
+
+    function animateText(selector) {
+      const textElement = $(selector);
+      const timeline = gsap.timeline();
+      const textContent = textElement.text();
+      textElement.empty(); // 기존 텍스트 비우기
+
+      // 각 단어를 span으로 감싸기
+      textContent.split(" ").forEach((word, index) => {
+        const span = $("<span>").text(word);
+        textElement.append(span);
+        if (index < textContent.split(" ").length - 1) {
+          textElement.append(" "); // 단어 사이에 공백 추가
+        }
+      });
+
+      const words = textElement.find("span"); // jQuery로 span 요소들을 찾기
+      timeline.fromTo(
+        words,
+        {
+          display: "inline-block",
+          y: 50,
+          opacity: 0,
+          filter: "blur(0.6rem)", // 초기 블러 효과
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1, // 순차적으로 등장
+          filter: "blur(0px)", // 블러 효과 제거
+          duration: 1, // 애니메이션 지속 시간 설정 (예: 1초)
+          ease: "power3.out"
+        }
+      );
+    }
+
+
+
+  </script>
+</body>
+
+</html>
