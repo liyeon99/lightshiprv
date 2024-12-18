@@ -1026,6 +1026,8 @@ body.dimmed::after {
 .header.scroll .header__logo_letter {
   -webkit-transform: translate(0, 100%);
           transform: translate(0, 100%);
+  opacity: 0;
+  visibility: hidden;
 }
 .header.scroll .header__logo_symbol.-left {
   -webkit-transform: scale(2) translate(260px, 76px);
