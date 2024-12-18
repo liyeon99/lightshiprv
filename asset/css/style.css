@@ -946,8 +946,6 @@ body.dimmed::after {
 .header__logo_letter {
   -webkit-transform: translate(0, 100%);
           transform: translate(0, 100%);
-  opacity: 0;
-  visibility: hidden;
 }
 @media (min-width: 700px) {
   .header__logo_letter {
